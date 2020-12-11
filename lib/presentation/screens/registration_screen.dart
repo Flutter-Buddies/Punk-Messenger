@@ -12,10 +12,10 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
   bool showSpinner = false;
-  String email;
-  String password;
+  // String email;
+  // String password;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  email = value;
+                  // email = value;
                 },
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
@@ -57,7 +57,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  password = value;
+                  // password = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
                     hintText: 'Enter your password'),
@@ -73,11 +73,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     showSpinner = true;
                   });
                   try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser != null) {
-                      Navigator.pushNamed(context, ChatScreen.id);
-                    }
+                    // final newUser = await _auth.createUserWithEmailAndPassword(
+                    //     email: email, password: password);
+                    // if (newUser != null) {
+                    //   Navigator.pushNamed(context, ChatScreen.id);
+                    // }
 
                     setState(() {
                       showSpinner = false;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:punk_messenger/presentation/screens/chat_screen.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:punk_messenger/presentation/components/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -55,11 +55,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: 60.0,
                   ),
                 ),
-                TypewriterAnimatedTextKit(
-                  text: ['Flash Chat'],
-                  textStyle: TextStyle(
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
+                Text(
+                  "Punk Messenger",
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -79,6 +79,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
               colour: Colors.blueAccent,
               onPressed: () {
                 Navigator.pushNamed(context, RegistrationScreen.id);
+              },
+            ),
+            RoundedButton(
+              title: 'Chat Screen',
+              colour: Colors.green,
+              onPressed: () {
+                Navigator.pushNamed(context, ChatScreen.id);
               },
             ),
           ],
