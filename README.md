@@ -17,6 +17,4 @@ Here is a cool design on dribble [cool_design].
 
 
 
-
-
 [cool_design]: https://dribbble.com/shots/6428387-Messenger-Mobile-Concept

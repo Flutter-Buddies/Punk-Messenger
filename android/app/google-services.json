@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "716190172528",
+    "project_id": "punkmessenger",
+    "storage_bucket": "punkmessenger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716190172528:android:c240ba921034084bba3bb5",
+        "android_client_info": {
+          "package_name": "com.example.punk_messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716190172528-rjdqb4qck3sagohvu2vap290iatrfksb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjXJwkCU4DNPiFqNgPv02I_UaElVwZwFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716190172528-rjdqb4qck3sagohvu2vap290iatrfksb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
