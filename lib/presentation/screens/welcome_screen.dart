@@ -1,8 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_signin_button/button_list.dart';
+import 'package:flutter_signin_button/button_view.dart';
+
 import 'package:punk_messenger/presentation/screens/chat_screen.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 import 'package:punk_messenger/presentation/components/rounded_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -13,12 +19,18 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  User _user;
+  GoogleSignIn _googleSignIn = GoogleSignIn();
+  bool sign = false;
+
   AnimationController controller;
   Animation animation;
 
   @override
   void initState() {
     super.initState();
+    sign = false;
 
     controller =
         AnimationController(duration: Duration(seconds: 1), vsync: this);
@@ -34,6 +46,29 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+
+  //Function that aides with Google Sign In
+  _signInWithGoogle() async {
+    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleAuth.idToken, accessToken: googleAuth.accessToken);
+
+    UserCredential result = (await _auth.signInWithCredential(credential));
+
+    _user = result.user;
+
+    setState(() {
+      sign = true;
+    });
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => ChatScreen()),
+    );
   }
 
   @override
@@ -88,6 +123,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Navigator.pushNamed(context, ChatScreen.id);
               },
             ),
+            SignInButton(Buttons.GoogleDark, text: "Sign up with Google",
+                onPressed: () {
+              _signInWithGoogle();
+            })
           ],
         ),
       ),
