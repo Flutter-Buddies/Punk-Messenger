@@ -9,20 +9,19 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 Future<void> main() async {
   await DotEnv.load();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final FirebaseApp app = await Firebase.initializeApp(
-    name: 'db2',
-    options: new FirebaseOptions(
-      projectId: 'punkmessenger', // ? Is this correct?
-      appId: DotEnv.env['googleAppID'],
-      apiKey: DotEnv.env['apiKey'],
-      // databaseURL: DotEnv.env['databaseURL'],
-    ),
-  );
+  // final FirebaseApp app = await Firebase.initializeApp(
+  //   name: 'db2',
+  //   options: new FirebaseOptions(
+  //     projectId: 'punkmessenger', // ? Is this correct?
+  //     appId: DotEnv.env['googleAppID'],
+  //     apiKey: DotEnv.env['apiKey'],
+  //     // databaseURL: DotEnv.env['databaseURL'],
+  //   ),
+  // );
 
   // TODO: Implement firestore https://firebase.flutter.dev/docs/firestore/usage/
   FirebaseFirestore firestore = FirebaseFirestore.instance;
