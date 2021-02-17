@@ -7,7 +7,6 @@ import 'package:punk_messenger/presentation/screens/chat_screen.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 import 'package:punk_messenger/presentation/components/rounded_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class WelcomeScreen extends StatefulWidget {
