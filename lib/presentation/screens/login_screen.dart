@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:punk_messenger/presentation/components/rounded_button.dart';
-import 'package:punk_messenger/data/constants/constants.dart';
+import 'package:punkmessenger/presentation/components/rounded_button.dart';
+import 'package:punkmessenger/data/constants/constants.dart';
 // import 'chat_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 

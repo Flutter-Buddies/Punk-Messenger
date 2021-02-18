@@ -1,7 +1,7 @@
 import 'package:auth/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:punk_messenger/presentation/components/rounded_button.dart';
-import 'package:punk_messenger/presentation/screens/chat_screen.dart';
+import 'package:punkmessenger/presentation/components/rounded_button.dart';
+import 'package:punkmessenger/presentation/screens/chat_screen.dart';
 import 'registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
