@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:punkmessenger/bloc/login_bloc.dart';
+import 'package:punkmessenger/presentation/screens/splash_screen.dart';
 import 'presentation/screens/welcome_screen.dart';
 import 'presentation/screens/login_screen.dart';
 import 'presentation/screens/registration_screen.dart';
@@ -13,15 +16,6 @@ Future<void> main() async {
   await DotEnv.load();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // final FirebaseApp app = await Firebase.initializeApp(
-  //   name: 'db2',
-  //   options: new FirebaseOptions(
-  //     projectId: 'punkmessenger', // ? Is this correct?
-  //     appId: DotEnv.env['googleAppID'],
-  //     apiKey: DotEnv.env['apiKey'],
-  //     // databaseURL: DotEnv.env['databaseURL'],
-  //   ),
-  // );
 
   // TODO: Implement firestore https://firebase.flutter.dev/docs/firestore/usage/
   // FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -35,7 +29,27 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: WelcomeScreen.id,
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<LoginBloc>(
+            create: (BuildContext context) => LoginBloc(),
+          ),
+        ],
+        child: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+            return (state is HasUser)
+                ? ChatScreen()
+                // Navigator.push(context, MaterialPageRoute(
+                //     builder: (context) => WelcomeScreen(),
+                // ))
+                // : Navigator.push(context, MaterialPageRoute(
+                //     builder: (context) => SplashScreen(),
+                //   ));
+                : WelcomeScreen();
+          },
+        ),
+      ),
+      // initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),

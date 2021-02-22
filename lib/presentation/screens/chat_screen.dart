@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:punkmessenger/data/constants/constants.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// final _firestore = FirebaseFirestore.instance;
-// User loggedInUser;
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -23,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
 
-    // getCurrentUser();
+    getCurrentUser();
   }
 
   void getCurrentUser() async {}
@@ -49,6 +45,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Text("Test"),
             MessagesStream(),
             Container(
               decoration: kMessageContainerDecoration,

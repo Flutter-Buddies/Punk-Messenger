@@ -50,8 +50,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       },
     );
 
-    auth.signInSilently();
-
     controller =
         AnimationController(duration: Duration(seconds: 1), vsync: this);
     animation = ColorTween(begin: Colors.blueGrey, end: Colors.white)
@@ -104,7 +102,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         ], // <Widget>[]
       );
   //
-  Column _buildBody(BuildContext context) {
+  Widget _buildBody(BuildContext context) {
     if (loggedIn) {
       return _authResults;
     } else {
@@ -122,13 +120,13 @@ class _WelcomeScreenState extends State<WelcomeScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          Row(
+          Column(
             children: <Widget>[
               Hero(
                 tag: 'logo',
                 child: Container(
                   child: Image.asset('images/logo.png'),
-                  height: 60.0,
+                  height: 120.0,
                 ),
               ),
               Text(
@@ -145,7 +143,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           ),
           const Text('You are not currently signed in.'),
           signInErrorMsg,
-          RaisedButton(
+          RoundedButton(
             onPressed: () {
               auth
                   .signInWithGoogle()
@@ -157,21 +155,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 errorMessage = auth.message;
               });
             },
-            child: const Text('Sign In With Google'),
-          ),
-          RaisedButton(
-            onPressed: () {
-              auth
-                  .signInAnonymously()
-                  .then((signIn) => signInFunc(signIn: signIn))
-                  .catchError((Object err) {
-                if (err is! Exception) {
-                  err = err.toString();
-                }
-                errorMessage = auth.message;
-              });
-            },
-            child: const Text('Log in anonymously'),
+            title: 'Sign In With Google',
+            color: Colors.blueAccent,
           ),
           RaisedButton(
             onPressed: () async {
@@ -194,14 +179,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
           RoundedButton(
             title: 'Register',
-            colour: Colors.blueAccent,
+            color: Colors.blueAccent,
             onPressed: () {
               Navigator.pushNamed(context, RegistrationScreen.id);
             },
           ),
           RoundedButton(
             title: 'Chat Screen',
-            colour: Colors.green,
+            color: Colors.green,
             onPressed: () {
               Navigator.pushNamed(context, ChatScreen.id);
             },

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:punkmessenger/presentation/components/rounded_button.dart';
 import 'package:punkmessenger/data/constants/constants.dart';
-// import 'chat_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:auth/auth.dart';
+import 'package:punkmessenger/presentation/screens/chat_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
@@ -11,14 +12,38 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  // final _auth = FirebaseAuth.instance;
   bool showSpinner = false;
-  // String email;
-  // String password;
+  var user;
+  bool loggedIn;
+  Auth auth;
+  String email;
+  String password;
+
+  @override
+  void initState() {
+    super.initState();
+    auth = Auth(
+      scopes: [
+        'email',
+        'https://www.googleapis.com/auth/contacts.readonly',
+      ],
+      listener: (user) {
+        loggedIn = user != null;
+        setState(() {});
+      },
+      listen: (account) {
+        loggedIn = account != null;
+        setState(() {});
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Registration'),
+      ),
       backgroundColor: Colors.white,
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
@@ -44,7 +69,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  // email = value;
+                  email = value;
                 },
                 decoration:
                     kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
@@ -56,32 +81,38 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
-                  // password = value;
+                  password = value;
                 },
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Enter your password'),
+                  hintText: 'Enter your password',
+                ),
               ),
               SizedBox(
                 height: 24.0,
               ),
               RoundedButton(
                 title: 'Register',
-                colour: Colors.blueAccent,
+                color: Colors.blueAccent,
                 onPressed: () async {
                   setState(() {
                     showSpinner = true;
                   });
                   try {
+                    final user = await auth.createUserWithEmailAndPassword(
+                        email: email, password: password);
                     // final newUser = await _auth.createUserWithEmailAndPassword(
                     //     email: email, password: password);
-                    // if (newUser != null) {
-                    //   Navigator.pushNamed(context, ChatScreen.id);
-                    // }
+                    if (user != null) {
+                      Navigator.pushNamed(context, ChatScreen.id);
+                    }
 
                     setState(() {
                       showSpinner = false;
                     });
                   } catch (e) {
+                    setState(() {
+                      showSpinner = false;
+                    });
                     print(e);
                   }
                 },
@@ -91,5 +122,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    auth.dispose();
+    super.dispose();
   }
 }

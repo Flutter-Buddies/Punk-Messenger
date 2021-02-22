@@ -14,12 +14,14 @@ dependencies:
   animated_text_kit: ^3.0.0
   async: ^2.0.0
   auth: ^7.0.0
+  bloc: ^6.1.1
   cloud_firestore: ^0.16.0
   cupertino_icons: ^1.0.0
   firebase_auth: ^0.20.0
   firebase_core: ^0.7.0
   firebase_crashlytics: ^0.4.0
   flutter_automation: ^1.0.0
+  flutter_bloc: ^6.1.2
   flutter_dotenv: ^3.0.0
   flutter_svg: ^0.17.0
   google_sign_in: ^4.0.0
