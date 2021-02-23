@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:punkmessenger/bloc/login_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:punkmessenger/presentation/components/rounded_button.dart';
 import 'package:punkmessenger/data/constants/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
@@ -100,15 +102,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   try {
                     final user = await auth.createUserWithEmailAndPassword(
                         email: email, password: password);
-                    // final newUser = await _auth.createUserWithEmailAndPassword(
-                    //     email: email, password: password);
                     if (user != null) {
+                      setState(() {
+                        showSpinner = false;
+                      });
+                      context.read<LoginBloc>().add(
+                            SetUser(user: auth),
+                          );
                       Navigator.pushNamed(context, ChatScreen.id);
                     }
-
-                    setState(() {
-                      showSpinner = false;
-                    });
                   } catch (e) {
                     setState(() {
                       showSpinner = false;

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:auth/auth.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
@@ -14,7 +13,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   @override
   Stream<LoginState> mapEventToState(
     LoginEvent event,
-  ) async* {    if (event is HasUser) {
+  ) async* {
+    if (event is HasUser) {
       yield HasUser(_user);
     } else if (event is SetUser) {
       await this._handleSetUser(event.user);

@@ -81,8 +81,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   }
 
   Widget get _authResults => ListView(
-        // padding: const EdgeInserts.all(30.0),
-        itemExtent: 80.0,
         children: <Widget>[
           Text("uid: ${auth.uid}"),
           Text("name: ${auth.displayName}"),
