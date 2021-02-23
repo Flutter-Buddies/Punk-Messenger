@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:punkmessenger/data/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:auth/auth.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -14,6 +15,96 @@ class _ChatScreenState extends State<ChatScreen> {
   // final _auth = FirebaseAuth.instance;
 
   String messageText;
+  bool loggedIn = false;
+  Auth auth;
+
+  Widget get _authResults => Container(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: [
+                Text("uid: ${auth.uid}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("name: ${auth.displayName}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("photo: ${auth.photoUrl}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("new login: ${auth.isNewUser}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("user name: ${auth.username}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("email: ${auth.email}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("email verified: ${auth.isEmailVerified}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("anonymous login: ${auth.isAnonymous}"),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Wrap(
+                    children: [
+                      Text("id token: ${auth.idToken}"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text("access token: ${auth.accessToken}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("information provider: ${auth.providerId}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("expire time: ${auth.expirationTime}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("auth time: ${auth.authTime}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("issued at: ${auth.issuedAtTime}"),
+              ],
+            ),
+            Row(
+              children: [
+                Text("signin provider: ${auth.signInProvider}"),
+              ],
+            ),
+          ], // <Widget>[]
+        ),
+      );
 
   @override
   void initState() {
@@ -22,7 +113,28 @@ class _ChatScreenState extends State<ChatScreen> {
     getCurrentUser();
   }
 
-  void getCurrentUser() async {}
+  void getCurrentUser() async {
+    auth = Auth(
+      scopes: [
+        'email',
+        'https://www.googleapis.com/auth/contacts.readonly',
+      ],
+      listener: (user) {
+        loggedIn = user != null;
+        setState(() {});
+      },
+      listen: (account) {
+        loggedIn = account != null;
+        setState(() {});
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    auth.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +157,12 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Container(
+              height: 250,
+              child: SingleChildScrollView(
+                child: _authResults,
+              ),
+            ),
             MessagesStream(),
             Container(
               decoration: kMessageContainerDecoration,

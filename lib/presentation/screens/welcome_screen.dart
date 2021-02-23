@@ -84,25 +84,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     }
   }
 
-  Widget get _authResults => ListView(
-        children: <Widget>[
-          Text("uid: ${auth.uid}"),
-          Text("name: ${auth.displayName}"),
-          Text("photo: ${auth.photoUrl}"),
-          Text("new login: ${auth.isNewUser}"),
-          Text("user name: ${auth.username}"),
-          Text("email: ${auth.email}"),
-          Text("email verified: ${auth.isEmailVerified}"),
-          Text("anonymous login: ${auth.isAnonymous}"),
-          Text("id token: ${auth.idToken}"),
-          Text("access token: ${auth.accessToken}"),
-          Text("information provider: ${auth.providerId}"),
-          Text("expire time: ${auth.expirationTime}"),
-          Text("auth time: ${auth.authTime}"),
-          Text("issued at: ${auth.issuedAtTime}"),
-          Text("signin provider: ${auth.signInProvider}"),
-        ], // <Widget>[]
-      );
   //
   Widget _buildBody(BuildContext context) {
     // This function is called by every RaisedButton widget.
