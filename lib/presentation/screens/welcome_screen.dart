@@ -71,13 +71,17 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: animation.value,
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.0),
-        child: _buildBody(context),
-      ),
-    );
+    if (loggedIn) {
+      return ChatScreen();
+    } else {
+      return Scaffold(
+        backgroundColor: animation.value,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          child: _buildBody(context),
+        ),
+      );
+    }
   }
 
   Widget get _authResults => ListView(
@@ -101,101 +105,85 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       );
   //
   Widget _buildBody(BuildContext context) {
-    if (loggedIn) {
-      return _authResults;
-    } else {
-      // This function is called by every RaisedButton widget.
-      void signInFunc({bool signIn}) {
-        if (signIn) {
-          errorMessage = '';
-        } else {
-          errorMessage = auth.message;
-        }
-        setState(() {});
+    // This function is called by every RaisedButton widget.
+    void signInFunc({bool signIn}) {
+      if (signIn) {
+        errorMessage = '';
+      } else {
+        errorMessage = auth.message;
       }
-
-      return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              Hero(
-                tag: 'logo',
-                child: Container(
-                  child: Image.asset('images/logo.png'),
-                  height: 120.0,
-                ),
-              ),
-              Text(
-                "Punk Messenger",
-                style: TextStyle(
-                  fontSize: 40.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 48.0,
-          ),
-          const Text('You are not currently signed in.'),
-          signInErrorMsg,
-          RoundedButton(
-            onPressed: () {
-              auth
-                  .signInWithGoogle()
-                  .then((signIn) => signInFunc(signIn: signIn))
-                  .catchError((Object err) {
-                if (err is! Exception) {
-                  err = err.toString();
-                }
-                errorMessage = auth.message;
-              });
-            },
-            title: 'Sign In With Google',
-            color: Colors.blueAccent,
-          ),
-          RaisedButton(
-            onPressed: () async {
-              final ep = await dialogBox(context: context);
-              if (ep == null || ep.isEmpty) {
-                return;
-              }
-              await auth
-                  .signInWithEmailAndPassword(email: ep[0], password: ep[1])
-                  .then((signIn) => signInFunc(signIn: signIn))
-                  .catchError((Object err) {
-                if (err is! Exception) {
-                  err = err.toString();
-                }
-                errorMessage = auth.message;
-              });
-            },
-            child: const Text('Sign in with Email & Password'),
-          ),
-
-          RoundedButton(
-            title: 'Register',
-            color: Colors.blueAccent,
-            onPressed: () {
-              Navigator.pushNamed(context, RegistrationScreen.id);
-            },
-          ),
-          RoundedButton(
-            title: 'Chat Screen',
-            color: Colors.green,
-            onPressed: () {
-              Navigator.pushNamed(context, ChatScreen.id);
-            },
-          ),
-          // SignInButton(Buttons.GoogleDark, text: "Sign up with Google",
-          // onPressed: () {
-          // _signInWithGoogle();
-          // })
-        ],
-      );
+      setState(() {});
     }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            Hero(
+              tag: 'logo',
+              child: Container(
+                child: Image.asset('images/logo.png'),
+                height: 150.0,
+              ),
+            ),
+            Text(
+              "Punk Messenger",
+              style: TextStyle(
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 48.0,
+        ),
+        signInErrorMsg,
+        RoundedButton(
+          onPressed: () {
+            auth
+                .signInWithGoogle()
+                .then((signIn) => signInFunc(signIn: signIn))
+                .catchError((Object err) {
+              if (err is! Exception) {
+                err = err.toString();
+              }
+              errorMessage = auth.message;
+            });
+          },
+          title: 'Sign In With Google',
+          color: Colors.blueAccent,
+        ),
+        RoundedButton(
+          color: Colors.black45,
+          onPressed: () async {
+            final ep = await dialogBox(context: context);
+            if (ep == null || ep.isEmpty) {
+              return;
+            }
+            await auth
+                .signInWithEmailAndPassword(email: ep[0], password: ep[1])
+                .then((signIn) => signInFunc(signIn: signIn))
+                .catchError((Object err) {
+              if (err is! Exception) {
+                err = err.toString();
+              }
+              errorMessage = auth.message;
+            });
+          },
+          title: 'Sign in with Email & Password',
+        ),
+        FlatButton(
+          child: Text('Register'),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pushNamed(context, RegistrationScreen.id);
+          },
+        ),
+      ],
+    );
   }
 }
 
@@ -263,7 +251,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                       ),
                     ),
                     SizedBox(
-                      width: 250,
+                      width: 225,
                       child: TextFormField(
                         validator: validateEmail,
                         controller: _emailController,
@@ -272,7 +260,7 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
                         decoration: const InputDecoration(
                             border: InputBorder.none,
                             hintText: 'Email',
-                            contentPadding: EdgeInsets.only(left: 70, top: 15),
+                            contentPadding: EdgeInsets.only(left: 5, top: 10),
                             hintStyle:
                                 TextStyle(color: Colors.black, fontSize: 14)),
                         style: const TextStyle(color: Colors.black),
@@ -321,21 +309,22 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         ),
       ),
       actions: <Widget>[
+        RaisedButton(
+          onPressed: () {
+            _onPressed();
+          },
+          color: Colors.blueAccent,
+          child: const Text(
+            'Log in',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
         FlatButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           child: const Text(
-            'CANCEL',
-            style: TextStyle(color: Colors.black),
-          ),
-        ),
-        FlatButton(
-          onPressed: () {
-            _onPressed();
-          },
-          child: const Text(
-            'SEND EMAIL',
+            'Cancel',
             style: TextStyle(color: Colors.black),
           ),
         ),

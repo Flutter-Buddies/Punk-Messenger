@@ -1,4 +1,3 @@
-import 'package:auth/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:punkmessenger/bloc/login_bloc.dart';
@@ -45,8 +44,7 @@ class FlashChat extends StatelessWidget {
                 // : Navigator.push(context, MaterialPageRoute(
                 //     builder: (context) => SplashScreen(),
                 //   ));
-                : Text(BlocProvider.of<LoginBloc>(context).state.toString());
-            // WelcomeScreen();
+                : WelcomeScreen();
           },
         ),
       ),

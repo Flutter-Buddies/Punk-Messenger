@@ -45,7 +45,6 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Text("Test"),
             MessagesStream(),
             Container(
               decoration: kMessageContainerDecoration,
