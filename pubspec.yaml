@@ -24,7 +24,6 @@ dependencies:
   flutter_automation: ^1.0.0
   flutter_bloc: ^6.1.2
   flutter_dotenv: ^3.0.0
-  flutter_svg: ^0.17.0
   google_sign_in: ^4.0.0
   modal_progress_hud: ^0.1.0
 dev_dependencies:
