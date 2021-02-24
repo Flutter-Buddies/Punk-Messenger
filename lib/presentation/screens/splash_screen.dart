@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:punkmessenger/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class SplashScreen extends StatefulWidget {
   static const String id = 'splash_screen';
 
@@ -82,45 +81,13 @@ class _SplashScreenState extends State<SplashScreen>
     );
   }
 
-  Widget get _authResults => ListView(
-        // padding: const EdgeInserts.all(30.0),
-        itemExtent: 80.0,
-        children: <Widget>[
-          Text("uid: ${auth.uid}"),
-          Text("name: ${auth.displayName}"),
-          Text("photo: ${auth.photoUrl}"),
-          Text("new login: ${auth.isNewUser}"),
-          Text("user name: ${auth.username}"),
-          Text("email: ${auth.email}"),
-          Text("email verified: ${auth.isEmailVerified}"),
-          Text("anonymous login: ${auth.isAnonymous}"),
-          Text("id token: ${auth.idToken}"),
-          Text("access token: ${auth.accessToken}"),
-          Text("information provider: ${auth.providerId}"),
-          Text("expire time: ${auth.expirationTime}"),
-          Text("auth time: ${auth.authTime}"),
-          Text("issued at: ${auth.issuedAtTime}"),
-          Text("signin provider: ${auth.signInProvider}"),
-        ], // <Widget>[]
-      );
-  //
   Column _buildBody(BuildContext context) {
     if (loggedIn) {
       context.read<LoginBloc>().add(
-        SetUser(user: auth),
-      );
-
+            SetUser(user: auth),
+          );
+      return Column();
     } else {
-      // This function is called by every RaisedButton widget.
-      void signInFunc({bool signIn}) {
-        if (signIn) {
-          errorMessage = '';
-        } else {
-          errorMessage = auth.message;
-        }
-        setState(() {});
-      }
-
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -37,18 +37,11 @@ class FlashChat extends StatelessWidget {
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
             return (state is HasUser)
-                ? ChatScreen()
-                // Navigator.push(context, MaterialPageRoute(
-                //     builder: (context) => WelcomeScreen(),
-                // ))
-                // : Navigator.push(context, MaterialPageRoute(
-                //     builder: (context) => SplashScreen(),
-                //   ));
+                ? ChatScreen() // TODO: This should probably point to a message list display, instead of the chat screen.
                 : WelcomeScreen();
           },
         ),
       ),
-      // initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         LoginScreen.id: (context) => LoginScreen(),
