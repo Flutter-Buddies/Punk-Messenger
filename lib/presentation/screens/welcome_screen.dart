@@ -1,7 +1,7 @@
 import 'package:auth/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:punkmessenger/presentation/components/rounded_button.dart';
-import 'package:punkmessenger/presentation/screens/chat_screen.dart';
+import 'package:punkmessenger/presentation/screens/home_screen.dart';
 import 'registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -71,25 +71,22 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    if (loggedIn) {
-      return ChatScreen();
-    } else {
-      return Scaffold(
-        backgroundColor: animation.value,
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: _buildBody(context),
-        ),
-      );
-    }
+    return Scaffold(
+      backgroundColor: animation.value,
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.0),
+        child: _buildBody(context),
+      ),
+    );
   }
 
   //
   Widget _buildBody(BuildContext context) {
-    // This function is called by every RaisedButton widget.
     void signInFunc({bool signIn}) {
       if (signIn) {
         errorMessage = '';
+        // TODO: this creates a nav stack which gives a back button to the welcome screen.  We don't want that.
+        Navigator.pushNamed(context, HomeScreen.id);
       } else {
         errorMessage = auth.message;
       }

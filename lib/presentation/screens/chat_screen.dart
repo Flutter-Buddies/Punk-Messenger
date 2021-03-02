@@ -18,94 +18,6 @@ class _ChatScreenState extends State<ChatScreen> {
   bool loggedIn = false;
   Auth auth;
 
-  Widget get _authResults => Container(
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: [
-                Text("uid: ${auth.uid}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("name: ${auth.displayName}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("photo: ${auth.photoUrl}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("new login: ${auth.isNewUser}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("user name: ${auth.username}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("email: ${auth.email}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("email verified: ${auth.isEmailVerified}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("anonymous login: ${auth.isAnonymous}"),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Wrap(
-                    children: [
-                      Text("id token: ${auth.idToken}"),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Text("access token: ${auth.accessToken}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("information provider: ${auth.providerId}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("expire time: ${auth.expirationTime}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("auth time: ${auth.authTime}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("issued at: ${auth.issuedAtTime}"),
-              ],
-            ),
-            Row(
-              children: [
-                Text("signin provider: ${auth.signInProvider}"),
-              ],
-            ),
-          ], // <Widget>[]
-        ),
-      );
-
   @override
   void initState() {
     super.initState();
@@ -146,7 +58,7 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: Icon(Icons.close),
               onPressed: () {
                 // _auth.signOut();
-                Navigator.pop(context);
+                Navigator.pop(context); // FIXME: Why does this sign the user out?
               }),
         ],
         title: Text('⚡️Chat'),
@@ -157,12 +69,6 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              height: 250,
-              child: SingleChildScrollView(
-                child: _authResults,
-              ),
-            ),
             MessagesStream(),
             Container(
               decoration: kMessageContainerDecoration,
