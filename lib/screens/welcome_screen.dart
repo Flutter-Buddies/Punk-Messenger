@@ -1,7 +1,7 @@
 import 'package:auth/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:punkmessenger/presentation/components/rounded_button.dart';
-import 'package:punkmessenger/presentation/screens/home_screen.dart';
+import 'package:punkmessenger/components/rounded_button.dart';
+import 'package:punkmessenger/screens/home_screen.dart';
 import 'registration_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -153,9 +153,8 @@ class _WelcomeScreenState extends State<WelcomeScreen>
           },
           title: 'Sign in with Email & Password',
         ),
-        FlatButton(
+        TextButton(
           child: Text('Register'),
-          color: Colors.white,
           onPressed: () {
             Navigator.pushNamed(context, RegistrationScreen.id);
           },
@@ -287,17 +286,16 @@ class _CustomAlertDialogState extends State<CustomAlertDialog> {
         ),
       ),
       actions: <Widget>[
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             _onPressed();
           },
-          color: Colors.blueAccent,
           child: const Text(
             'Log in',
             style: TextStyle(color: Colors.white),
           ),
         ),
-        FlatButton(
+        TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },

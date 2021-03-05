@@ -11,13 +11,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  animated_text_kit: ^3.0.0
+  animated_text_kit: ^4.0.0
   async: ^2.0.0
   auth: ^7.0.0
   bloc: ^6.1.1
   cloud_firestore: ^0.16.0
   cupertino_icons: ^1.0.0
-  equatable: ^1.2.6
+  equatable: ^2.0.0
   firebase_auth: ^0.20.0
   firebase_core: ^0.7.0
   firebase_crashlytics: ^0.4.0

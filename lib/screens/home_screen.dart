@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auth/auth.dart';
-import 'package:punkmessenger/presentation/screens/chat_screen.dart';
+import 'package:punkmessenger/screens/chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -162,12 +162,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: _authResults,
               ),
             ),
-            RaisedButton(
-              child: Text('Go to ChatScreen'),
-              onPressed: () {
-                Navigator.pushNamed(context, ChatScreen.id);
-              }
-            )
+            ElevatedButton(
+                child: Text('Go to ChatScreen'),
+                onPressed: () {
+                  Navigator.pushNamed(context, ChatScreen.id);
+                })
           ],
         ),
       ),

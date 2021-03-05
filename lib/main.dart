@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:punkmessenger/bloc/login_bloc.dart';
-import 'presentation/screens/welcome_screen.dart';
-import 'presentation/screens/login_screen.dart';
-import 'presentation/screens/registration_screen.dart';
-import 'presentation/screens/home_screen.dart';
-import 'presentation/screens/chat_screen.dart';
+import 'package:punkmessenger/screens/welcome_screen.dart';
+import 'package:punkmessenger/screens/login_screen.dart';
+import 'package:punkmessenger/screens/registration_screen.dart';
+import 'package:punkmessenger/screens/home_screen.dart';
+import 'package:punkmessenger/screens/chat_screen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 import 'dart:async';
 import 'package:firebase_core/firebase_core.dart';

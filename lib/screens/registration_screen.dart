@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:punkmessenger/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:punkmessenger/presentation/components/rounded_button.dart';
+import 'package:punkmessenger/components/rounded_button.dart';
 import 'package:punkmessenger/data/constants/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:auth/auth.dart';
-import 'package:punkmessenger/presentation/screens/chat_screen.dart';
+import 'package:punkmessenger/screens/chat_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String id = 'registration_screen';
