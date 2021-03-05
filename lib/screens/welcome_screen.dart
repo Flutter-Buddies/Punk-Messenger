@@ -85,8 +85,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     void signInFunc({bool signIn}) {
       if (signIn) {
         errorMessage = '';
-        // TODO: this creates a nav stack which gives a back button to the welcome screen.  We don't want that.
-        Navigator.pushNamed(context, HomeScreen.id);
+        Navigator.pushReplacementNamed(context, HomeScreen.id);
       } else {
         errorMessage = auth.message;
       }

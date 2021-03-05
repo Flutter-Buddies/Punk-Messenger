@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auth/auth.dart';
 import 'package:punkmessenger/screens/chat_screen.dart';
+import 'package:punkmessenger/screens/welcome_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -145,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.logout),
               onPressed: () {
                 auth.signOut();
-                Navigator.pop(context);
+                Navigator.pushReplacementNamed(context, WelcomeScreen.id);
               }),
         ],
         title: Text('⚡️'),
