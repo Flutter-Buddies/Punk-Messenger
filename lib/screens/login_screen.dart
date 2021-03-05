@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:punk_messenger/presentation/components/rounded_button.dart';
-import 'package:punk_messenger/data/constants/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'chat_screen.dart';
+import 'package:punkmessenger/components/rounded_button.dart';
+import 'package:punkmessenger/data/constants/constants.dart';
+// import 'chat_screen.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -67,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               RoundedButton(
                 title: 'Log In',
-                colour: Colors.lightBlueAccent,
+                color: Colors.lightBlueAccent,
                 onPressed: () async {
                   setState(() {
                     showSpinner = true;

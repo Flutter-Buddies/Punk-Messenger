@@ -1,39 +1,40 @@
 {
-  "project_info": {
-    "project_number": "716190172528",
-    "project_id": "punkmessenger",
-    "storage_bucket": "punkmessenger.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:716190172528:android:c240ba921034084bba3bb5",
-        "android_client_info": {
-          "package_name": "com.example.punk_messenger"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "716190172528-rjdqb4qck3sagohvu2vap290iatrfksb.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDjXJwkCU4DNPiFqNgPv02I_UaElVwZwFs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "716190172528-rjdqb4qck3sagohvu2vap290iatrfksb.apps.googleusercontent.com",
-              "client_type": 3
+    "project_info": {
+        "project_number": "716190172528",
+        "project_id": "punkmessenger",
+        "storage_bucket": "punkmessenger.appspot.com"
+    },
+    "client": [{
+        "client_info": {
+            "mobilesdk_app_id": "1:716190172528:android:27da3edc22059374ba3bb5",
+            "android_client_info": {
+                "package_name": "com.flutterbuddies.punkmessenger"
             }
-          ]
+        },
+        "oauth_client": [{
+                "client_id": "716190172528-7ejkv8h5l9kddglq8m63lsgemq2eo7qr.apps.googleusercontent.com",
+                "client_type": 1,
+                "android_info": {
+                    "package_name": "com.flutterbuddies.punkmessenger",
+                    "certificate_hash": "9e69f19d827f1965fb40654183117d28649a2a4c"
+                }
+            },
+            {
+                "client_id": "716190172528-rjdqb4qck3sagohvu2vap290iatrfksb.apps.googleusercontent.com",
+                "client_type": 3
+            }
+        ],
+        "api_key": [{
+            "current_key": "AIzaSyDjXJwkCU4DNPiFqNgPv02I_UaElVwZwFs"
+        }],
+        "services": {
+            "appinvite_service": {
+                "other_platform_oauth_client": [{
+                    "client_id": "716190172528-rjdqb4qck3sagohvu2vap290iatrfksb.apps.googleusercontent.com",
+                    "client_type": 3
+                }]
+            }
         }
-      }
-    }
-  ],
-  "configuration_version": "1"
+    }],
+    "configuration_version": "1"
 }
