@@ -1,6 +1,6 @@
 import 'package:auth/auth.dart';
 import 'package:flutter/material.dart';
-import 'package:punkmessenger/components/rounded_button.dart';
+import 'package:punkmessenger/widgets/rounded_button.dart';
 import 'package:punkmessenger/screens/home_screen.dart';
 import 'registration_screen.dart';
 

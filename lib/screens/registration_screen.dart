@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:punkmessenger/bloc/login_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:punkmessenger/components/rounded_button.dart';
+import 'package:punkmessenger/widgets/rounded_button.dart';
 import 'package:punkmessenger/data/constants/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:auth/auth.dart';
