@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:punk_messenger/data/constants/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:punkmessenger/data/constants/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// final _firestore = FirebaseFirestore.instance;
-// User loggedInUser;
+import 'package:auth/auth.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen';
@@ -18,15 +15,38 @@ class _ChatScreenState extends State<ChatScreen> {
   // final _auth = FirebaseAuth.instance;
 
   String messageText;
+  bool loggedIn = false;
+  Auth auth;
 
   @override
   void initState() {
     super.initState();
 
-    // getCurrentUser();
+    getCurrentUser();
   }
 
-  void getCurrentUser() async {}
+  void getCurrentUser() async {
+    auth = Auth(
+      scopes: [
+        'email',
+        'https://www.googleapis.com/auth/contacts.readonly',
+      ],
+      listener: (user) {
+        loggedIn = user != null;
+        setState(() {});
+      },
+      listen: (account) {
+        loggedIn = account != null;
+        setState(() {});
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    auth.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +58,8 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: Icon(Icons.close),
               onPressed: () {
                 // _auth.signOut();
-                Navigator.pop(context);
+                Navigator.pop(
+                    context); // FIXME: Why does this sign the user out?
               }),
         ],
         title: Text('⚡️Chat'),
@@ -64,7 +85,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       decoration: kMessageTextFieldDecoration,
                     ),
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {
                       messageTextController.clear();
                       // _firestore.collection('messages').add({

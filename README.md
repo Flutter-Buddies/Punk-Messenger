@@ -1,4 +1,4 @@
-# Punk Messenger
+sudo sysctl -p.# Punk Messenger
 Just how far can we push the design?
 
 ## Add links to designs here
